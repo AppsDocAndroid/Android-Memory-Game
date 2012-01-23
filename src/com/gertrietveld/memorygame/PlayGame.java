@@ -1,9 +1,8 @@
 package com.gertrietveld.memorygame;
 
 
+import java.util.Arrays;
 import java.util.Collections;
-
-import com.gertrietveld.memorygame.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-//import android.widget.Toast;
 import android.widget.Toast;
 
 public class PlayGame extends Activity {
@@ -33,11 +31,12 @@ public class PlayGame extends Activity {
 	private MediaPlayer mp;
 	private Boolean b_snd_inc, b_snd_cor;
 	
-	
+	public static boolean  DEBUG = false;
 
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
 		initGame();
 
 	}
@@ -127,7 +126,7 @@ public class PlayGame extends Activity {
 		img_mc[15][0] = R.drawable.back8;
 		img_mc[15][1] = R.drawable.ic_img8;
 
-		//Collections.shuffle(Arrays.asList(img_mc));
+		if (! DEBUG) Collections.shuffle(Arrays.asList(img_mc));
 
 		for (int i = 0; i < 16; i++) {
 			myMcs[i] = (Button) findViewById(id_mc[i]);
@@ -200,7 +199,7 @@ public class PlayGame extends Activity {
 		}
 		
 		
-		// reenable and turn cards back
+		// re-enable and turn cards back
 		for (Button b : myMcs) {
 			if (b.getVisibility() != View.INVISIBLE) {
 				b.setEnabled(true);
@@ -244,7 +243,7 @@ public class PlayGame extends Activity {
 	
 	private void startMenu() {
 		Intent launchMenu = new Intent(this, MenuScreen.class);
-		launchMenu.putExtra(COME_FROM,"PlayGame");
+		
 		startActivity(launchMenu);
 	}
 	
@@ -261,7 +260,7 @@ public class PlayGame extends Activity {
 		//String sender = getIntent().getExtras().getString("SENDER");
 	
 			//initGame();
-			Toast.makeText(this, "onRestart-sender is " , Toast.LENGTH_SHORT).show();
+		if (DEBUG) Toast.makeText(this, "onRestart-sender is " , Toast.LENGTH_SHORT).show();
 		
 	
 	}

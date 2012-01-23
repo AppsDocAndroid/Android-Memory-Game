@@ -14,8 +14,7 @@ import android.widget.ListView;
 
 
 public class MenuScreen extends ListActivity {
-	public static final String NEW_GAME = "new_game";
-
+	
 	/** Called when the activity is first created. */
 
 
@@ -56,7 +55,6 @@ public class MenuScreen extends ListActivity {
 
 	private void startGame() {
 		Intent launchGame = new Intent(this, PlayGame.class);
-		launchGame.putExtra("SENDER", "MenuScreen");
 		startActivity(launchGame);
 	}
 	
