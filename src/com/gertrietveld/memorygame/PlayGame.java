@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 public class PlayGame extends Activity {
 
-	public static final String COME_FROM = "come_from";
 	private int[] id_mc = new int[16];
 	private Integer[][] img_mc = new Integer[16][2];
 	private Button[] myMcs = new Button[16];
@@ -126,7 +125,7 @@ public class PlayGame extends Activity {
 		img_mc[15][0] = R.drawable.back8;
 		img_mc[15][1] = R.drawable.ic_img8;
 
-		if (! DEBUG) Collections.shuffle(Arrays.asList(img_mc));
+		if (DEBUG == false) Collections.shuffle(Arrays.asList(img_mc));
 
 		for (int i = 0; i < 16; i++) {
 			myMcs[i] = (Button) findViewById(id_mc[i]);
@@ -257,18 +256,15 @@ public class PlayGame extends Activity {
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		//String sender = getIntent().getExtras().getString("SENDER");
-	
-			//initGame();
 		if (DEBUG) Toast.makeText(this, "onRestart-sender is " , Toast.LENGTH_SHORT).show();
-		
-	
+			
 	}
+	
 	/*
 	@Override
 	protected void onResume() {
-	super.onResume();
-	Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+		super.onResume();
+		if (DEBUG) Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
 	}
 	*/
 
