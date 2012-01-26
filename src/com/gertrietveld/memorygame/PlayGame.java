@@ -248,7 +248,7 @@ public class PlayGame extends Activity {
 	}
 
 	private void startPrefs() {
-		Intent launchPrefs = new Intent(this, Settings.class);
+		Intent launchPrefs = new Intent(this, SettingsScreen.class);
 		startActivity(launchPrefs);
 	}
 
