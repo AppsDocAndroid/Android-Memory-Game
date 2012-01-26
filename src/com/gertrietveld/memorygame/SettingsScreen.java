@@ -61,15 +61,18 @@ public class SettingsScreen extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
+		Button saveButtonGame = (Button) findViewById(R.id.save_game);
 		Button saveButtonMenu = (Button) findViewById(R.id.save_prefs);
 		SharedPreferences settings = getSharedPreferences("memoryPrefs", 0);
-		if (settings.getString("previous_screen", "") != "MenuScreen") {
-
-			saveButtonMenu.setVisibility(View.GONE);
-		}
-		Button saveButtonGame = (Button) findViewById(R.id.save_game);
-		if (settings.getString("previous_screen", "") != "PlayGame") {
+		//Toast.makeText(this, settings.getString("previous_screen","---"), Toast.LENGTH_SHORT).show();
+		if (settings.getString("previous_screen","") == "MenuScreen") {
 			saveButtonGame.setVisibility(View.GONE);
+			saveButtonMenu.setVisibility(View.VISIBLE);
+		}
+		
+		if (settings.getString("previous_screen","") == "PlayGame") {
+			saveButtonMenu.setVisibility(View.GONE);
+			saveButtonGame.setVisibility(View.VISIBLE);
 		}
 	}
 

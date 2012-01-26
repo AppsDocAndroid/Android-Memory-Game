@@ -29,7 +29,7 @@ public class PlayGame extends Activity {
 	private MediaPlayer mp;
 	private Boolean b_snd_inc, b_snd_cor, b_new_game;
 
-	public static boolean DEBUG = true;
+	public static boolean DEBUG = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
