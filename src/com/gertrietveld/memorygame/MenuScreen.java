@@ -5,6 +5,7 @@ import com.gertrietveld.memorygame.R;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -54,6 +55,11 @@ public class MenuScreen extends ListActivity {
 	}
 
 	private void startGame() {
+		SharedPreferences settings = getSharedPreferences("memoryPrefs", 0);
+		SharedPreferences.Editor prefeditor = settings.edit();
+		prefeditor.putBoolean("new_game", true);
+		prefeditor.commit();
+		
 		Intent launchGame = new Intent(this, PlayGame.class);
 		startActivity(launchGame);
 	}

@@ -57,6 +57,7 @@ public class Settings extends Activity {
 		SharedPreferences.Editor prefeditor = settings.edit();
 		prefeditor.putBoolean("play_sound_when_correct", ch_sound_correct.isChecked());
 		prefeditor.putBoolean("play_sound_when_incorrect", ch_sound_incorrect.isChecked());
+		prefeditor.putBoolean("new_game", false);
 		prefeditor.commit();
 		
 		//Toast.makeText(this, "setPreferences",Toast.LENGTH_LONG);

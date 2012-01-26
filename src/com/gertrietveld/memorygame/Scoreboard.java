@@ -2,6 +2,7 @@ package com.gertrietveld.memorygame;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,10 @@ public class Scoreboard extends Activity {
 	}
 	
 	private void startGame() {
+		SharedPreferences settings = getSharedPreferences("memoryPrefs", 0);
+		SharedPreferences.Editor prefeditor = settings.edit();
+		prefeditor.putBoolean("new_game", true);
+		prefeditor.commit();
 		Intent launchGame = new Intent(this, PlayGame.class);
 		startActivity(launchGame);
 	}
