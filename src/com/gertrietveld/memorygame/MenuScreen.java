@@ -69,5 +69,15 @@ public class MenuScreen extends ListActivity {
 		startActivity(launchPrefs);
 	}
 
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		SharedPreferences settings = getSharedPreferences("memoryPrefs", 0);
+		SharedPreferences.Editor prefeditor = settings.edit();
+		prefeditor.putString("previous_screen", "MenuScreen");
+		prefeditor.commit();
+	}
+
 
 }

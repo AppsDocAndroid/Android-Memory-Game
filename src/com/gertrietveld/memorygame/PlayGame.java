@@ -123,8 +123,9 @@ public class PlayGame extends Activity {
 			img_mc[15][0] = R.drawable.back8;
 			img_mc[15][1] = R.drawable.ic_img8;
 
-			if (DEBUG == false)
+			if (DEBUG == false) {
 				Collections.shuffle(Arrays.asList(img_mc));
+			}
 
 			for (int i = 0; i < 16; i++) {
 				myMcs[i] = (Button) findViewById(id_mc[i]);
@@ -243,13 +244,22 @@ public class PlayGame extends Activity {
 
 	private void startMenu() {
 		Intent launchMenu = new Intent(this, MenuScreen.class);
-
 		startActivity(launchMenu);
 	}
 
 	private void startPrefs() {
 		Intent launchPrefs = new Intent(this, SettingsScreen.class);
 		startActivity(launchPrefs);
+	}
+	
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		SharedPreferences settings = getSharedPreferences("memoryPrefs", 0);
+		SharedPreferences.Editor prefeditor = settings.edit();
+		prefeditor.putString("previous_screen", "PlayGame");
+		prefeditor.commit();
 	}
 
 	// //////////////////////////////
@@ -258,10 +268,13 @@ public class PlayGame extends Activity {
 	protected void onRestart() {
 		super.onRestart();
 		initGame();
-		if (DEBUG)
+		if (DEBUG) {
 			Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
+		}
 
 	}
+	
+	
 
 	/*
 	 * @Override protected void onResume() { super.onResume(); if (DEBUG)
