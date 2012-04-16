@@ -7,21 +7,41 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
 public class Scoreboard extends Activity {
+	
+	public static boolean DEBUG = false;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.scoreboard);
+		if (DEBUG) {
+			Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show(); 
+		}
 
+	}
+	
+	@Override
+	public void onNewIntent(Intent intent)
+	{
+	  super.onNewIntent(intent);
+	  setIntent(intent);
+	}
+	
+	
+	
+	@Override protected void onStart() { 
+		super.onStart();
+
+		setContentView(R.layout.scoreboard);
 		
-		Intent i = getIntent();
-	    Bundle b = i.getExtras();
-	    int score = b.getInt("com.gertrietveld.memorygame.SCORE");
+		int score = getIntent().getIntExtra("com.gertrietveld.memorygame.SCORE",99);
+
 		TextView t = (TextView) findViewById(R.id.scoreboard_text);
-		t.setText("Youre finished the game in " + score + " tries!");
+		t.setText( String.format( getString(R.string.scoreboard_text), score ) );
 		
 		
 		Button startButton = (Button) findViewById(R.id.play_again);
@@ -31,8 +51,6 @@ public class Scoreboard extends Activity {
 			}
 		});
 		
-		
-
 	}
 	
 	private void startGame() {

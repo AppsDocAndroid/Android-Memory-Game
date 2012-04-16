@@ -211,11 +211,13 @@ public class PlayGame extends Activity {
 			}
 		}
 
-		tFeedback.setText("" + correctcounter + " / " + mc_counter);
+		tFeedback.setText(String.format("%d/%d", correctcounter, mc_counter));
 
 		if (correctcounter > 7) {
+
 			Intent iSc = new Intent(getApplicationContext(), Scoreboard.class);
 			iSc.putExtra("com.gertrietveld.memorygame.SCORE", mc_counter);
+			iSc.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			startActivity(iSc);
 
 		}
@@ -251,8 +253,7 @@ public class PlayGame extends Activity {
 		Intent launchPrefs = new Intent(this, SettingsScreen.class);
 		startActivity(launchPrefs);
 	}
-	
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -262,7 +263,6 @@ public class PlayGame extends Activity {
 		prefeditor.commit();
 	}
 
-	// //////////////////////////////
 
 	@Override
 	protected void onRestart() {
@@ -273,14 +273,13 @@ public class PlayGame extends Activity {
 		}
 
 	}
-	
-	
 
-	/*
-	 * @Override protected void onResume() { super.onResume(); if (DEBUG)
-	 * Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show(); }
-	 */
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (DEBUG)
+			Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+	}
 
-	// //////////////////////////////
 
 }

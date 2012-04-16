@@ -58,6 +58,7 @@ public class MenuScreen extends ListActivity {
 		SharedPreferences settings = getSharedPreferences("memoryPrefs", 0);
 		SharedPreferences.Editor prefeditor = settings.edit();
 		prefeditor.putBoolean("new_game", true);
+		prefeditor.putInt("score", 100);
 		prefeditor.commit();
 		
 		Intent launchGame = new Intent(this, PlayGame.class);
